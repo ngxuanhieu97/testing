@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.scss';
+import MyComponent from './Example/MyComponent.js';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -15,8 +16,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hello from HieuHunter with love!
         </a>
+
+        <MyComponent />
       </header>
     </div>
   );
