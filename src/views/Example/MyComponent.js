@@ -9,16 +9,21 @@ class MyComponent extends React.Component {
     }
 
     handleOnChangeName = (event) => {
+        // console.log(">>> check local event:" ,event.target.value, event.target, event)
+
         this.setState({
             name: event.target.value
         });
     }
 
+    handleClickButton = () => {
+        alert('Click me');
+    }
     /*
       JSX => return block
      */ 
     render() {
-        
+        console.log(">>> render: ", this.state);
         return (
             <>
                 <div className="container" >
@@ -32,6 +37,9 @@ class MyComponent extends React.Component {
                     </div>
                     <div className="second">
                         My age: {this.state.age}
+                    </div>
+                    <div className="third">
+                        <button onClick={() => this.handleClickButton()}>Click Me</button>
                     </div>
                 </div>
             </>
