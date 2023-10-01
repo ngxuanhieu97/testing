@@ -27,10 +27,6 @@ class MyComponent extends React.Component {
         })
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        alert('Click me')
-    } 
     /*
       JSX => return block
      */ 
@@ -52,18 +48,11 @@ class MyComponent extends React.Component {
                         value={this.state.lastName} 
                         onChange={(event) => this.handleChangeLastName(event)} 
                     />
-                    <br/><br/>
-                    <input  
-                        type="submit"
-                        onClick={(event) => this.handleSubmit(event)}
-                     />
+                    
                 </form> 
 
                 <ChildComponent 
-                name={this.state.firstName}
-                age={'25'}
-                address={'HCM city'}
-                arrayJob={this.state.arrayJob}
+                    arrayJob={this.state.arrayJob}
                 />
             </>
         )

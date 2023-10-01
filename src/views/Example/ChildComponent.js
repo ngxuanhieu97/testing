@@ -1,56 +1,56 @@
 import React from 'react';
 
-// class ChildComponent extends React.Component {
+class ChildComponent extends React.Component {
 
-//     /*
-//       JSX => return block
-//      */ 
-//     render() {
-//         console.log(">>> render: ", this.state);
-//         let {name, age, address, arrayJob} = this.props;
-//         let a = '';
-//         return (
-//             <>
-//                <div className="job-lists">
-//                 {
-//                     a = arrayJob.map((item, index) => {
-//                         return (
-//                             <div key={item.id}>
-//                                 {item.title} - {item.salary}
-//                             </div>
-//                         )
-//                     })
-//                 }
+    /*
+      JSX => return block
+     */ 
 
-//                 {console.log('>> check map array: ', a)}
-//                </div>
-//             </>
-//         )
-//     }
-// }
+    /**
+     * declare default value
+     */
+    state = {
+        showJobs: false
+    }
 
-
-const ChildComponent = (props) => {
-    console.log(">> check child props: ", props);
-    
-    let { arrayJob } = props;
-
-    return (
-        <>
-            <div className="job-lists">
-                {
-                    arrayJob.map((item, index) => {
-                        return (
-                            <div key={item.id}>
-                                {item.title} - {item.salary}
-                            </div>
-                        )
-                    })
+    handleShowHide = () => {
+        this.setState({
+            showJobs: !this.state.showJobs
+        })
+    }
+    render() {
+        let { arrayJob } = this.props;
+        let { showJobs } = this.state;
+        // let  flag = showJobs === true ? 'showJobs = true' : 'showJobs = false';
+        // console.log(">> check flag: ", flag);
+        return (
+            <>
+                { showJobs === false ? 
+                    <>  
+                    <div><button onClick={() => this.handleShowHide()} >Show</button></div>
+                    </>
+                :
+                    <>
+                        <div className="job-lists">
+                            {
+                                arrayJob.map((item, index) => {
+                                    return (
+                                        <div key={item.id}>
+                                            {item.title} - {item.salary}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div>
+                            <button onClick={() => this.handleShowHide()} >Hide</button>
+                        </div>
+                    </>
                 }
+            </>
+        )
+    }
+}
 
-            </div>
-        </>
-    )
-};
 
 export default ChildComponent;
