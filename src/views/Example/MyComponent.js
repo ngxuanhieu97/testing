@@ -1,11 +1,10 @@
 import React from 'react';
 import ChildComponent from './ChildComponent';
+import AddComponent from './AddComponent';
 class MyComponent extends React.Component {
 
     // key: value
     state = {
-        firstName: '',
-        lastName: '',
         arrayJob: [
             { id: 'job1', title: 'developer' , salary: '5000$'},
             { id: 'job2', title: 'tester' , salary: '3000$'},
@@ -13,17 +12,10 @@ class MyComponent extends React.Component {
         ]
     }
 
-    handleChangeFirstName = (event) => {
+    addNewJob = (job) => {
+        // console.log(">> check job: ", job);
         this.setState({
-            firstName: event.target.value
-        })
-    }
-
-
-
-    handleChangeLastName = (event) => {
-        this.setState({
-            lastName: event.target.value
+            arrayJob: [...this.state.arrayJob, job]
         })
     }
 
@@ -33,23 +25,10 @@ class MyComponent extends React.Component {
     render() {
         console.log(">>> render: ", this.state);
         return (
-            <>
-                <form>
-                    <label htmlFor="fname">First name:</label><br/>
-                    <input 
-                        type="text" 
-                        value={this.state.firstName}
-                        onChange={(event) => this.handleChangeFirstName(event)} 
-                    />
-                    <br/>
-                    <label htmlFor="lname">Last name:</label><br/>
-                    <input 
-                        type="text" 
-                        value={this.state.lastName} 
-                        onChange={(event) => this.handleChangeLastName(event)} 
-                    />
-                    
-                </form> 
+            <>  
+            <AddComponent
+                addNewJob={this.addNewJob}
+            />
 
                 <ChildComponent 
                     arrayJob={this.state.arrayJob}
