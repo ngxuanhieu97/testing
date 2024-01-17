@@ -64,7 +64,6 @@ class AddComponent extends React.Component  {
                         onClick={(event) => this.handleSubmit(event)}
                     />
                 </form> 
-
             </>
         )
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Demo.css';
 class ChildComponent extends React.Component {
 
     /*
@@ -32,7 +32,9 @@ class ChildComponent extends React.Component {
             <>
                 { showJobs === false ? 
                     <>  
-                    <div><button onClick={() => this.handleShowHide()} >Show</button></div>
+                    <div><button 
+                    className="btn-show"
+                    onClick={() => this.handleShowHide()} >Show</button></div>
                     </>
                 :
                     <>
