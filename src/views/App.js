@@ -1,20 +1,36 @@
 import logo from './logo.svg';
 import './App.scss';
+import {
+  BrowserRouter as BasicRouter,
+  Switch,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
 import MyComponent from './Example/MyComponent.js';
 import ListTodos from './Todos/ListTodos';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Nav from './Nav/Nav.js';
+import Home from './Example/Home.js';
 
 const App = () => {
   return (
+    <BasicRouter>
     <div className="App">
+      < Nav/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Simple To Do App With Hunter
-        </p>
         {/* <MyComponent /> */}
-        <ListTodos />
+        {/* <ListTodos /> */}
+
+        {/* <Home/> */}
+        <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/about" element={<MyComponent />} />
+        <Route path="/todo" element={<ListTodos />} />
+        </Routes>
       </header>
 
       <ToastContainer
@@ -28,8 +44,8 @@ const App = () => {
         draggable
         pauseOnHover
       />
-
     </div>
+    </BasicRouter>
   );
 }
 
