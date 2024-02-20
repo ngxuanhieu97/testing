@@ -1,13 +1,16 @@
 import React from "react";
 import './Nav.scss';
+import {
+    NavLink
+  } from "react-router-dom";
 
 class  Nav extends React.Component {
     render() {
         return (
             <div className="topnav">
-                <a className="active" href="/">Home</a>
-                <a href="/todo">Todo List</a>
-                <a href="/about">About</a>
+                <NavLink to="/" activeClassName="selected" exact={true}>Home</NavLink>
+                <NavLink to="/todo" activeClassName="selected">TodoList</NavLink>
+                <NavLink to="/about" activeClassName="selected">About</NavLink>
             </div>
         )
     }
