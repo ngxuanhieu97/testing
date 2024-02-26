@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Nav from './Nav/Nav.js';
 import Home from './Example/Home.js';
+import ListUser from './Users/ListUser.js';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<MyComponent />} />
         <Route path="/todo" element={<ListTodos />} />
+        <Route path="/users" element={<ListUser />} />
         </Routes>
       </header>
 
