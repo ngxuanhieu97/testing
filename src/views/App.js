@@ -1,53 +1,72 @@
 import logo from './logo.svg';
 import './App.scss';
+import MyComponent from './Example/MyComponent.js';
+import ListTodo from './Todos/ListTodo';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ListUser from './Users/ListUser';
+import Nav from './Nav/Nav';
+import Home from './Example/Home';
+import DetailUser from './Users/DetailUser';
+
 import {
-  BrowserRouter as BasicRouter,
+  BrowserRouter,
   Switch,
-  Routes,
   Route,
   Link
 } from "react-router-dom";
 
-import MyComponent from './Example/MyComponent.js';
-import ListTodos from './Todos/ListTodos';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Nav from './Nav/Nav.js';
-import Home from './Example/Home.js';
-import ListUser from './Users/ListUser.js';
 
-const App = () => {
+/**
+ * 2 components: class component / function component ( function, arrow)
+ * JSX
+ */
+
+function App() {
+  // const  App = () =>  {
   return (
-    <BasicRouter>
-    <div className="App">
-      < Nav/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {/* <MyComponent /> */}
-        {/* <ListTodos /> */}
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/todo">
+              <ListTodo />
+            </Route>
+            <Route path="/about">
+              <MyComponent />
+            </Route>
 
-        {/* <Home/> */}
-        <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/about" element={<MyComponent />} />
-        <Route path="/todo" element={<ListTodos />} />
-        <Route path="/users" element={<ListUser />} />
-        </Routes>
-      </header>
+            <Route path="/user" exact>
+              <ListUser />
+            </Route>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-    </div>
-    </BasicRouter>
+            <Route path="/user/:id">
+              <DetailUser />
+            </Route>
+
+          </Switch>
+
+        </header>
+
+
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
+    </BrowserRouter>
   );
 }
 

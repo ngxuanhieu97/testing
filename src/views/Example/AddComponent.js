@@ -1,72 +1,68 @@
-import React from "react";
+import React from 'react';
 
-class AddComponent extends React.Component  {
+class AddComponent extends React.Component {
 
     state = {
-        titleJob: '',
+        title: '',
         salary: '',
     }
-    
     handleChangeTitleJob = (event) => {
         this.setState({
-            titleJob: event.target.value
+            title: event.target.value
         })
     }
-
-    handleChangeSalary = (event) => {
+    handleChangeLastName = (event) => {
         this.setState({
             salary: event.target.value
         })
     }
-    
+
+
     handleSubmit = (event) => {
         event.preventDefault()
-        // validation
-        if(!this.state.titleJob || !this.state.salary) {
-            alert("Require missing value")
-            return
+        if (!this.state.title || !this.state.salary) {
+            alert('Missing required params')
+            return;
         }
-        console.log(">> check input: ", this.state)
+        console.log('>>> check data input: ', this.state)
         this.props.addNewJob({
-            id: Math.floor(Math.random() * 100),
-            title: this.state.titleJob,
+            id: Math.floor(Math.random() * 1001),
+            title: this.state.title,
             salary: this.state.salary
-
         })
 
         this.setState({
-            titleJob: '',
+            title: '',
             salary: ''
         })
     }
 
-    render () {
+    render() {
         return (
-            <>
-                <div>Additional Component</div>
-                <br></br>
-                <form>
-                    <label htmlFor="fname">Job's title:</label><br/>
-                    <input 
-                        type="text" 
-                        value={this.state.titleJob}
-                        onChange={(event) => this.handleChangeTitleJob(event)} 
-                    />
-                    <br/>
-                    <label htmlFor="lname">Salary:</label><br/>
-                    <input 
-                        type="text" 
-                        value={this.state.salary} 
-                        onChange={(event) => this.handleChangeSalary(event)} 
-                    />
-                    <br /><br />
-                    <input type="submit"
-                        onClick={(event) => this.handleSubmit(event)}
-                    />
-                </form> 
-            </>
+            <form>
+                <label htmlFor="fname">Job's title:</label><br />
+                <input
+                    type="text"
+                    value={this.state.title}
+                    onChange={(event) => this.handleChangeTitleJob(event)}
+                />
+                <br />
+                <label htmlFor="lname">Salary:</label><br />
+                <input
+                    type="text"
+                    value={this.state.salary}
+                    onChange={(event) => this.handleChangeLastName(event)}
+
+                />
+
+                <br /><br />
+                <input type="submit"
+                    onClick={(event) => this.handleSubmit(event)}
+                />
+            </form>
         )
     }
+
 }
 
-export default AddComponent
+export default AddComponent;

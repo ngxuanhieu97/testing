@@ -1,51 +1,71 @@
 import React from 'react';
 import ChildComponent from './ChildComponent';
 import AddComponent from './AddComponent';
+
 class MyComponent extends React.Component {
 
-    // key: value
+
+    //key:value
     state = {
-        arrayJob: [
-            { id: 'job1', title: 'developer' , salary: '5000$'},
-            { id: 'job2', title: 'tester' , salary: '3000$'},
-            { id: 'job3', title: 'pm' , salary: '15000$'},
+        arrJobs: [
+            { id: 'abcJob1', title: 'Developers', salary: '500' },
+            { id: 'abcJob2', title: 'Testers', salary: '400' },
+            { id: 'abcJob3', title: 'Project managers', salary: '1000' }
         ]
     }
 
+
     addNewJob = (job) => {
-        // console.log(">> check job: ", job);
-        // let currentJobs = this.state.arrayJob;
-        // currentJobs.push(job);
+        console.log('check job from parent: ', job)
+        // let currenJobs = this.state.arrJobs;
+        // currenJobs.push(job)
+
         this.setState({
-            arrayJob: [...this.state.arrayJob, job]
-            // arrayJob: currentJobs
+            arrJobs: [...this.state.arrJobs, job]
+            // arrJobs: currenJobs
         })
+
     }
 
     deleteAJob = (job) => {
-        let currentJobs = this.state.arrayJob;
-        currentJobs = currentJobs.filter(item => item.id !== job.id);
+        let currenJobs = this.state.arrJobs;
+        currenJobs = currenJobs.filter(item => item.id !== job.id);
         this.setState({
-            arrayJob: currentJobs
+            arrJobs: currenJobs
         })
     }
-    /*
-      JSX => return block
-     */ 
-    render() {
-        console.log(">>> render: ", this.state);
-        return (
-            <>  
-            <AddComponent
-                addNewJob={this.addNewJob}
-            />
 
-                <ChildComponent 
-                    arrayJob={this.state.arrayJob}
+    componentDidUpdate(prevProps, prevState) {
+        console.log('>> run didupdate: ', 'prev state: ', prevState, ' current state: ', this.state)
+    }
+    componentDidMount() {
+        console.log('>>> run component did mount')
+    }
+
+    /* 
+    JSX => return block
+    fragment
+    */
+
+    //re-render
+    render() {
+        console.log('>>> call render: ', this.state)
+        return (
+            <>
+                <AddComponent
+                    addNewJob={this.addNewJob}
+                />
+
+
+                <ChildComponent
+                    arrJobs={this.state.arrJobs}
                     deleteAJob={this.deleteAJob}
                 />
+
+
             </>
         )
+
     }
 }
 
